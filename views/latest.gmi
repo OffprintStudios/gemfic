@@ -1,0 +1,17 @@
+# New stories
+
+{{range . -}}
+=> /story/{{.ID}} 📕 {{.Author.Username}} – {{.Title}}
+
+{{.ShortDesc}}
+
+{{else}}
+No stories found.
+
+{{end}}
+⎯
+
+=> / 🏠 Home
+=> /search 🔍 Search
+=> /browse/1 📚 Browse
+

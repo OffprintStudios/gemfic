@@ -1,0 +1,12 @@
+# Gemfic
+
+Welcome to Gemfic, the reader's hub on Geminispace!
+
+=> /latest 📕 Latest stories
+=> /search 🔍 Search
+=> mailto:alyssa@rosenzweig.io Contact
+
+Powered by Offprint with 💙 
+
+=> https://offprint.net Offprint
+=> https://ko-fi.com/offprintstudios Ko-Fi

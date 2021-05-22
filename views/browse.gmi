@@ -1,0 +1,28 @@
+# Browse
+
+{{if .Docs -}}
+{{range .Docs -}}
+=> /story/{{.ID}} 📕 {{.Author.Username}} – {{.Title}}
+
+{{.ShortDesc}}
+
+{{else}}
+No stories found.
+{{end}}
+{{if ne .TotalPages 1 -}}
+
+⎯
+
+Page {{.Page}} / {{.TotalPages}}
+
+{{if .HasNextPage -}}
+=> {{.NextPageURL}} Next
+{{end -}}
+{{if .HasPrevPage -}}
+=> {{.BeforePageURL}} Previous
+{{end -}}
+{{- end}}
+
+{{- else -}}
+Hmm. Nothing here. Did you take a wrong turn?
+{{- end}}

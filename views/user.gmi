@@ -1,0 +1,17 @@
+# {{.Username}}
+
+{{ if .Profile.Tagline -}}
+{{.Profile.Tagline}}
+
+{{ end -}}
+{{ if .Profile.Bio -}}
+{{.Profile.Bio}}
+
+{{ else -}}
+Hmm... I wonder who {{.Username}} could be?
+
+{{ end -}}
+
+=> / 🏠 Home
+=> /user/{{.ID}}/works/1 📕 {{.Username}}’s works
+=> /user/{{.ID}}/gemlog/1 📰 {{.Username}}’s gemlog

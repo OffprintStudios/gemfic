@@ -1,0 +1,15 @@
+# {{ .Title }}
+
+=> /user/{{.Author.ID}} By {{.Author.Username}}
+
+{{ .Body }}
+
+## Chapters
+
+{{range .Sections -}}
+=> /read/{{.ID}} {{.Title}} ({{.Stats.Words}} words)
+{{else}}
+Nothing yet!
+{{end}}
+
+

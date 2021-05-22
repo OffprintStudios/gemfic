@@ -1,0 +1,28 @@
+{{$emoji := .Emoji -}}
+{{$name := .Name -}}
+{{if .Docs -}}
+# {{.AuthorUsername}}’s {{.Name}}
+
+{{range .Docs -}}
+=> /{{$name}}/{{.ID}} {{$emoji}} {{.Title}}
+
+{{.ShortDesc}}
+
+{{end}}
+{{if ne .TotalPages 1 -}}
+
+⎯
+
+Page {{.Page}} / {{.TotalPages}}
+
+{{if .HasNextPage -}}
+=> {{.NextPageURL}} Next
+{{end -}}
+{{if .HasPrevPage -}}
+=> {{.BeforePageURL}} Previous
+{{end -}}
+{{- end}}
+
+{{- else -}}
+Hmm. Nothing here. Did you take a wrong turn?
+{{- end}}

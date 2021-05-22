@@ -1,0 +1,28 @@
+# Results for “{{ .Query }}”
+
+{{ if or .Users .Works .Blogs -}}
+{{ if .Users -}}
+{{ range .Users -}}
+=> /user/{{.ID}} 👤 {{.Username}}
+{{ end -}}
+
+{{ end -}}
+{{ if .Works -}}
+{{ range .Works -}}
+=> /story/{{.ID}} 📕 {{.Author.Username}} – {{.Title}}
+
+{{ .ShortDesc }}
+
+{{ end }}
+{{ end -}}
+{{ if .Blogs -}}
+{{ range .Blogs -}}
+=> /gemlog/{{.ID}} 📰 {{.Author.Username}} – {{.Title}}
+{{ end -}}
+{{ end -}}
+{{ else -}}
+No results found.
+{{- end}}
+
+=> / 🏠 Home
+=> /search 🔍 Search again
