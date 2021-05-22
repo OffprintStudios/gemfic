@@ -1,0 +1,11 @@
+# Deploy
+
+# apt install golang git
+$ git clone https://github.com/OffprintStudios/gemfic
+$ cd gemfic
+$ go get
+$ openssl genrsa 2048 > host.key
+$ openssl req -new -x509 -nodes -sha256 -days 365 -key host.key -out host.cert
+$ go build
+$ tmux
+$ ./gemfic

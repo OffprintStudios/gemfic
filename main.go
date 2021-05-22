@@ -427,5 +427,5 @@ func main() {
 		}
 	})
 
-	g.Run("my.crt", "my.key")
+	g.Run("host.cert", "host.key")
 }
