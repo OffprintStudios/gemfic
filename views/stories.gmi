@@ -1,10 +1,11 @@
 {{$emoji := .Emoji -}}
 {{$name := .Name -}}
+{{$urlname := .URLName -}}
 {{if .Docs -}}
 # {{.AuthorUsername}}’s {{.Name}}
 
 {{range .Docs -}}
-=> /{{$name}}/{{.ID}} {{$emoji}} {{.Title}}
+=> /{{$urlname}}/{{.ID}} {{$emoji}} {{.Title}}
 
 {{.ShortDesc}}
 

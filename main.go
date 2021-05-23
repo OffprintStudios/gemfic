@@ -94,6 +94,7 @@ type Documents struct {
 	DisplayType    string
 	Emoji          string
 	Name           string
+	URLName        string
 }
 
 type SearchResults struct {
@@ -246,7 +247,7 @@ func GetTeaser(gemtext string) string {
 	return gemtext
 }
 
-func HandleDocuments(c gig.Context, kinds string, name string, emoji string, gemlogCache ItemCache) error {
+func HandleDocuments(c gig.Context, kinds string, name string, urlname string, emoji string, gemlogCache ItemCache) error {
 	page := url.QueryEscape(c.Param("Page"))
 	ID := url.QueryEscape(c.Param("ID"))
 	b, err := FetchAPI("/content/fetch-all-published?filter=Default&pageNum=" + page + "&userId=" + ID + "&" + kinds)
@@ -283,6 +284,7 @@ func HandleDocuments(c gig.Context, kinds string, name string, emoji string, gem
 	wrap.BeforePageURL = "/user/" + c.Param("ID") + "/" + name + "/" + strconv.Itoa(wrap.Page-1)
 	wrap.Emoji = emoji
 	wrap.Name = name
+	wrap.URLName = urlname
 
 	return c.Render("stories.gmi", wrap)
 }
@@ -410,11 +412,11 @@ func main() {
 	})
 
 	g.Handle("/user/:ID/works/:Page", func(c gig.Context) error {
-		return HandleDocuments(c, "kind=ProseContent&kind=PoetryContent", "works", "📕", nil)
+		return HandleDocuments(c, "kind=ProseContent&kind=PoetryContent", "works", "story", "📕", nil)
 	})
 
 	g.Handle("/user/:ID/gemlog/:Page", func(c gig.Context) error {
-		return HandleDocuments(c, "kind=BlogContent", "gemlog", "📰", gemlogCache)
+		return HandleDocuments(c, "kind=BlogContent", "gemlog", "gemlog", "📰", gemlogCache)
 	})
 
 	g.Handle("/search", func(c gig.Context) error {
