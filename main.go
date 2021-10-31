@@ -204,6 +204,14 @@ func (cache *SectionCache) Get(id string) (section Section, err error) {
 	return
 }
 
+// Offprint returns buggy JSON, using "null" as a sentinel in some cases.
+// Normalize strings so we don't print literal nulls.
+func NormalizeString(s *string) {
+	if *s == "null" {
+		*s = ""
+	}
+}
+
 func (cache *AuthorCache) Get(id string) (author Author, err error) {
 	if cached, ok := (*cache)[id]; ok {
 		return cached, nil
@@ -217,6 +225,9 @@ func (cache *AuthorCache) Get(id string) (author Author, err error) {
 	if err = json.Unmarshal(b, &author); err != nil {
 		return
 	}
+
+	NormalizeString(&author.Profile.Tagline)
+	NormalizeString(&author.Profile.Bio)
 
 	(*cache)[id] = author
 	return
