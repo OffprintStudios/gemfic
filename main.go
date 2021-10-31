@@ -55,7 +55,7 @@ type UserProfile struct {
 
 type Author struct {
 	ID       string `json:"_id"`
-	Username string `json:"username"`
+	Username string `json:"screenName"`
 
 	// Available for full user objects
 	Profile UserProfile
@@ -209,7 +209,7 @@ func (cache *AuthorCache) Get(id string) (author Author, err error) {
 		return cached, nil
 	}
 
-	b, err := FetchAPI("/user/get-user-info/" + url.QueryEscape(id))
+	b, err := FetchAPI("/user/get-profile?pseudId=" + url.QueryEscape(id))
 	if err != nil {
 		return
 	}
