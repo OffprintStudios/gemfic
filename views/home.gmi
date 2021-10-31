@@ -3,7 +3,7 @@
 Welcome to Gemfic, the reader's hub on Geminispace!
 
 => /latest 📕 Latest stories
-=> /search 🔍 Search
+=> /search_user 🔍 Search for a user
 => mailto:alyssa@rosenzweig.io Contact
 
 Powered by Offprint with 💙 

@@ -98,10 +98,7 @@ type Documents struct {
 }
 
 type SearchResults struct {
-	Users []Author `json:"users"`
-	Blogs []Item   `json:"blogs"`
-	Works []Item   `json:"works"`
-
+	Users []Author `json:"docs"`
 	Query string
 }
 
@@ -300,8 +297,8 @@ func HandleDocuments(c gig.Context, kinds string, name string, urlname string, e
 	return c.Render("stories.gmi", wrap)
 }
 
-func HandleSearch(c gig.Context, query string) error {
-	b, err := FetchAPI("/search/get-initial-results?query=" + url.QueryEscape(query))
+func HandleSearchUser(c gig.Context, query string) error {
+	b, err := FetchAPI("/search/get-user-results?query=" + url.QueryEscape(query) + "&pageNum=1")
 
 	if err != nil {
 		return c.Gemini(err.Error())
@@ -313,7 +310,7 @@ func HandleSearch(c gig.Context, query string) error {
 	}
 
 	results.Query = query
-	return c.Render("search.gmi", results)
+	return c.Render("search_user.gmi", results)
 }
 
 func main() {
@@ -430,13 +427,13 @@ func main() {
 		return HandleDocuments(c, "kind=BlogContent", "gemlog", "gemlog", "📰", gemlogCache)
 	})
 
-	g.Handle("/search", func(c gig.Context) error {
+	g.Handle("/search_user", func(c gig.Context) error {
 		if query, err := c.QueryString(); err != nil {
 			return c.Gemini(err.Error())
 		} else if query != "" {
-			return HandleSearch(c, query)
+			return HandleSearchUser(c, query)
 		} else {
-			return c.NoContent(gig.StatusInput, "What are you looking for?")
+			return c.NoContent(gig.StatusInput, "Who are you looking for?")
 		}
 	})
 

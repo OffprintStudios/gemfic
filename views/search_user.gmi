@@ -1,0 +1,12 @@
+# Results for “{{ .Query }}”
+
+{{ if .Users -}}
+{{ range .Users -}}
+=> /user/{{.ID}} 👤 {{.Username}}
+{{ end -}}
+{{ else -}}
+No results found.
+{{- end}}
+
+=> / 🏠 Home
+=> /search_user 🔍 Search again
